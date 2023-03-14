@@ -130,3 +130,4 @@ dmypy.json
 
 # Untracked Files
 UdacityRubric.pdf
+.DS_Store
