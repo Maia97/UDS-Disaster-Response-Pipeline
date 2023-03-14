@@ -2,13 +2,13 @@
 
 ## Description
 
-This Project is part of the Data Science Nanodegree Program by Udacity in collaboration with Figure Eight. The dataset contains pre-labelled tweets and messages from real-life disaster events. The aim of the project is to build a Natural Language Processing (NLP) model to categorize messages on a real-time basis.
+This Project is part of the Data Science Nanodegree Program by Udacity in collaboration with Appen (formerly Figure Eight). The dataset contains real messages that were sent during disaster events, and was labelled for analysis. Therefore, this project is aiming to build a Natural Language Processing (NLP) model for an API that categorizes disaster messages on a real-time basis.
 
 The project consists of three main components: **ETL pipeline, ML pipeline, and Flask web app**. 
 
 In the ETL pipeline, we will load and merge the message and category datasets, clean the data, and store it in a SQLite database. In the ML pipeline, we will build a text processing and machine learning pipeline that will train and tune a model using GridSearchCV. Finally, we will develop a Flask web app that will allow the user to input a new message and get classification results in several categories. The web app will also display data visualizations using Plotly.
 
-## Program Structure
+## Structure
 ```
 - app
 | - template
@@ -38,29 +38,32 @@ In the ETL pipeline, we will load and merge the message and category datasets, c
 
 ## Environment
 * Python 3.7
-* Machine Learning Libraries: NumPy, SciPy, Pandas, Sciki-Learn
-* Natural Language Process Libraries: NLTK
-* SQLlite Database Libraqries: SQLalchemy
-* Model Loading and Saving Library: Pickle
-* Web App and Data Visualization: Flask, Plotly
+* Libraries:
+    * Data Processing: NumPy, Pandas
+    * Machine Learning: SciPy, Sciki-Learn
+    * Natural Language Process: NLTK
+    * SQLlite Database: SQLalchemy
+    * Model Loading and Saving: Pickle
+    * Data Visualization: Flask, Plotly
 
 Install Python packages with `pip` and `requirements.txt`
 ```
 $ pip install -r requirements.txt
 ```
 
-## Executing Program
+## Executing
 1. (Optional) Process the database, train and save model.
 
     - Clean and store data in SQLite database: 
         ```
         python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/disaster_response_db.db
         ```
-    - Loads data, train and save ML classifier as a pickle file: 
+    - Load data, train and save ML classifier as a pickle file: 
         ```
         python models/train_classifier.py data/disaster_response_db.db models/classifier.pkl
         ```
-
+    *You may also take a look at the preparation notebooks for a better step-by-step understanding.
+    
 2. Run the web app under the app's directory:
     ```
     app $ python run.py
