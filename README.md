@@ -2,7 +2,7 @@
 
 ## Description
 
-This Project is part of the Data Science Nanodegree Program by Udacity in collaboration with Appen (formerly Figure Eight). The dataset contains real messages that were sent during disaster events, and was labelled for analysis. Therefore, this project is aiming to build a Natural Language Processing (NLP) model for an API that categorizes disaster messages on a real-time basis.
+This Project is part of the Data Science Nanodegree Program by Udacity in collaboration with Appen (formerly Figure Eight). The dataset contains real messages that were sent during disaster events, and was labelled for analysis. With a disaster response message classification system will enable emergency workers to send messages to the appropriate relief agencies quickly and help relief agencies prioritize their response efforts and allocate resources more effectively. Therefore, this project is aiming to build a Natural Language Processing (NLP) model for an API that categorizes disaster messages on a real-time basis.
 
 The project consists of three main components: **ETL pipeline, ML pipeline, and Flask web app**. 
 
