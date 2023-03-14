@@ -43,8 +43,14 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    category_counts = df.iloc[:,4:].sum().sort_values(ascending=False)
+    category_names = category_counts.index
+    category_boolean = category_counts.values
+    
+    
     # create visuals
     graphs = [
+            # 1 - genre graph
         {
             'data': [
                 Bar(
@@ -60,6 +66,26 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+            # 2 - category graph    
+        {
+            'data': [
+                Bar(
+                    x=category_names,
+                    y=category_boolean
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle': 35
                 }
             }
         }
