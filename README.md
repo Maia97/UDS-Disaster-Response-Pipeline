@@ -48,7 +48,7 @@ In the ETL pipeline, we will load and merge the message and category datasets, c
 
 Install Python packages with `pip` and `requirements.txt`
 ```
-$ pip install -r requirements.txt
+$ pip3 install -r requirements.txt
 ```
 
 ## Executing
@@ -56,17 +56,17 @@ $ pip install -r requirements.txt
 
     - Clean and store data in SQLite database: 
         ```
-        python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/disaster_response_db.db
+        python3 data/process_data.py data/messages.csv data/categories.csv data/DisasterResponse.db
         ```
     - Load data, train and save ML classifier as a pickle file: 
         ```
-        python models/train_classifier.py data/disaster_response_db.db models/classifier.pkl
+        python3 models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
         ```
     *You may also take a look at the preparation notebooks for a better step-by-step understanding.
     
 2. Run the web app under the app's directory:
     ```
-    app $ python run.py
+    app $ python3 run.py
     ```
 
 3. Open web page at http://0.0.0.0:3000/
