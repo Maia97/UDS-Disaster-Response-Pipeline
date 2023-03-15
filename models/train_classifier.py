@@ -6,12 +6,14 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 import nltk
-from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer
 nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
+nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
+# from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
 
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
@@ -62,6 +64,10 @@ def tokenize(text):
 
     # tokenize text
     tokens = word_tokenize(text)
+    
+    # Remove stop words
+    # stop_words = stopwords.words("english")
+    # tokens = [tok for tok in tokens if tok not in stop_words]
     
     # initiate lemmatizer
     lemmatizer = WordNetLemmatizer()
@@ -154,7 +160,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'models/train_classifier.py data/DisasterResponse.db models/classifier.pkl')
 
 
 if __name__ == '__main__':
