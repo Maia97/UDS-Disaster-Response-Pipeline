@@ -25,15 +25,33 @@ warnings.filterwarnings('ignore')
 
 
 def load_data(database_filepath):
+    """
+    Load data from database file and extract variables for training.
+    
+    Parameters:
+        database_filepath (text): path to SQLite database file
+    Returns:
+        X (series): features
+        y (dataframe): labels
+        category_names (list): names of category columns
+    """
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table('disaster_response_table', engine)
     X = df['message']
     y = df.iloc[:,4:]
-    return X, y
+    category_names = y.columns
+    return X, y, category_names
 
 
 def tokenize(text):
-
+    """
+    Tokenize text data.
+    
+    Parameters:
+        text (text): message data to be tokenized
+    Returns:
+        clean_tokens (list): tokens extracted from the provided text
+    """
     # get list of all urls using regex
     url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
     detected_urls = re.findall(url_regex, text)
@@ -56,6 +74,12 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Build machine learning model pipeline.
+    
+    Returns:
+        model (object): a machine learning pipeline to process text messages and apply a classifier.
+    """
     pipeline =  Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -72,17 +96,40 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """
+    Evaluate model performance on test data and print out accuracy and F1 scores.
+        
+    Parameters:
+        model (object):  a machine learning model pipeline
+        X_test (list): test features
+        Y_test (list): test labels
+        category_names (list): label names
+    """
     y_pred = model.predict(X_test)
     class_report = classification_report(Y_test, y_pred, target_names=category_names)
     print(class_report)
 
 
 def save_model(model, model_filepath):
+    """
+    Save trained model as a Pickle file to be loaded later.
+    
+    Parameters:
+        model (object): trained machine learning model
+        pickle_filepath (list): destination path to save .pkl file
+    """
     with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
 
 
 def main():
+    """
+    Main function to train and save the claasifier.
+        1) Extract data from SQLite db
+        2) Train ML model on training set
+        3) Evaluate model performance on test set
+        4) Save trained model as Pickle
+    """
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))
