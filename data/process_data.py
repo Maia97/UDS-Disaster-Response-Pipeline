@@ -8,8 +8,8 @@ def load_data(messages_filepath, categories_filepath):
     Load messages and categories data, merge to one dataframe.
     
     Parameters:
-        messages_filepath (text): path to the CSV file containing messages
-        categories_filepath (text): path to the CSV file containing categories
+        messages_filepath (str): path to the CSV file containing messages
+        categories_filepath (str): path to the CSV file containing categories
     Returns:
         df (dataframe): combined data containing messages and categories
     """
@@ -64,7 +64,7 @@ def save_data(df, database_filename):
     
     Parameters:
         df (dataframe): combined data containing messages and cleaned categories
-        database_filename (text): path to SQLite database
+        database_filename (str): path to SQLite database
     """
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql('disaster_response_table', engine, index=False)

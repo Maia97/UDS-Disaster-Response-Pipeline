@@ -29,7 +29,7 @@ def load_data(database_filepath):
     Load data from database file and extract variables for training.
     
     Parameters:
-        database_filepath (text): path to SQLite database file
+        database_filepath (str): path to SQLite database file
     Returns:
         X (series): features
         y (dataframe): labels
@@ -48,7 +48,7 @@ def tokenize(text):
     Tokenize text data.
     
     Parameters:
-        text (text): message data to be tokenized
+        text (str): message data to be tokenized
     Returns:
         clean_tokens (list): tokens extracted from the provided text
     """
