@@ -67,7 +67,7 @@ def save_data(df, database_filename):
         database_filename (str): path to SQLite database
     """
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql('disaster_response_table', engine, index=False)
+    df.to_sql('disaster_response_table', engine, index=False, if_exists='replace')
 
 
 def main():
